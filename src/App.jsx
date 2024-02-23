@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import image1 from '../images/bg-header-desktop.svg'
+import image1 from '../public/bg-header-desktop.svg'
 import Job from './components/jobs';
 import Search from './components/search';
 import data from './data/data.json'
