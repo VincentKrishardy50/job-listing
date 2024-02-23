@@ -98,7 +98,7 @@ const App = () => {
 
   return (
     <>
-      <header className="bg-cyan-dark bg-no-repeat bg-cover h-44 bg-header-desktop" style={{background: image1}}></header>
+      <header className="bg-cyan-dark bg-no-repeat bg-cover h-44 bg-header-desktop" style={{backgroundImage: `url(${image1})`}}></header>
       <main className="bg-cyan-light min-h-[80vh] pb-8 px-6">
         <div className="max-w-5xl m-auto relative -top-8 ">
           <Search handleFilter={filters} deleteClicked={handleDeleteFilter} deleteAll={deleteAllFilters}/>
