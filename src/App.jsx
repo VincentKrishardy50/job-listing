@@ -3,6 +3,7 @@ import image1 from '../public/bg-header-desktop.svg'
 import Job from './components/jobs';
 import Search from './components/search';
 import data from './data/data.json'
+import Pagination from './components/pagination';
 
 
 const App = () => {
@@ -22,7 +23,6 @@ const App = () => {
   function setDataPaging(){
     let realData = data;
     let newData = [];
-    console.log(filters.length);
     if(filters != 0){
       for (let filter of filters){
         newData = [];
@@ -47,7 +47,6 @@ const App = () => {
 
 
   useEffect(() => {
-    console.log("masuk")
     let filteredData = setDataPaging();
     if(filters.length !== 0){
       setDataJob(filteredData);
@@ -66,7 +65,6 @@ const App = () => {
   }
 
   function handleAddFilter(e){
-    console.log("Add Filter")
     let filter = e.target.textContent;
     let prevButtonContent = document.getElementById(currPage-1);
     prevButtonContent.className = 'mx-1 px-6 py-4 rounded shadow text-blue-500 bg-white'
@@ -77,7 +75,6 @@ const App = () => {
   }
 
   function handleDeleteFilter(e){
-    console.log("Delete Filter")
     let deleted = e.target.tabIndex;
     let prevButtonContent = document.getElementById(currPage-1);
     prevButtonContent.className = 'mx-1 px-6 py-4 rounded shadow text-blue-500 bg-white'
@@ -92,7 +89,6 @@ const App = () => {
 
   function deleteAllFilters(e){
     setFilters([]);
-    console.log("Delete All Filter")
   }
   
 
@@ -106,26 +102,8 @@ const App = () => {
           <Job data={getDataPaging(currPage)} filterClicked={handleAddFilter}/>
           </div>
           <nav className="mt-4">
-            <ul className="flex justify-center">
-            {
-              getPagination().map((page, index) => (
-                  <li>
-                    {(page === 1) ? 
-                    <button key={index} id={index} className='mx-1 px-6 py-4 rounded shadow text-white bg-cyan-dark font-bold' onClick={handlePaging}>
-                        {page}
-                    </button>:
-                    <button key={index} id={index} className='mx-1 px-6 py-4 rounded shadow  text-blue-500 bg-white' onClick={handlePaging}>
-                      {page}
-                    </button>}
-                      
-                  </li>
-              ))
-            }
-            {console.log(dataJob)}
-            </ul>
+            <Pagination handlePaging={handlePaging} getPaginationNumber={getPagination()}/>
           </nav>
-            
-          
         </div>
       </main>
     </>
